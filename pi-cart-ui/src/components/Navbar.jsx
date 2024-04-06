@@ -18,8 +18,11 @@ const Navbar = () => {
           placeholder="Search for product here..."
           className=" bg-slate-300 rounded-xl w-full focus:outline-none text-slate-700 font-medium p-1"
         />
-        <label htmlFor="search" className="cursor-pointer">
-          <MdSearch className="text-white text-xl font-medium hover:text-sky-300" />
+        <label
+          htmlFor="search"
+          className="cursor-pointer text-orange-700 rounded-full hover:bg-orange-400 p-2 hover:text-slate-100"
+        >
+          <MdSearch className="  text-xl font-medium" />
         </label>
       </div>
       <div className="flex gap-8 items-center ">
@@ -33,7 +36,9 @@ const Navbar = () => {
           to="/login"
           className={` flex border-t gap-2 items-center hover:shadow-md hover:shadow-orange-500 rounded-md px-4 hover:cursor-pointer hover:bg-slate-300 text-slate-500 hover:text-slate-800 `}
         >
-          <span className=" text-md font-semibold p-2 flex items-center">Login</span>
+          <span className=" text-md font-semibold p-2 flex items-center">
+            Login
+          </span>
         </Link>
       </div>
     </div>
