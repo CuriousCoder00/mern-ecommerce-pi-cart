@@ -3,9 +3,24 @@ import { useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
+const SignupInitials = {
+  name: "",
+  email: "",
+  password: "",
+};
+
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [signupFormData, setSignupForm] = useState(SignupInitials);
 
+  const handleSignup = (e) => {
+    e.preventDefault();
+    console.log("Signing up", signupFormData);
+  };
+
+  const handleChange = (e) => {
+    setSignupForm({ ...signupFormData, [e.target.name]: e.target.value });
+  };
   return (
     <div className="flex justify-center mt-10 ">
       <div className="flex justify-center border-t align-center p-2 flex-col rounded-lg bg-slate-200 w-full max-w-96 shadow-lg shadow-orange-500">
@@ -24,7 +39,7 @@ const Register = () => {
               <input
                 type="text"
                 name="name"
-                id="name"
+                id="name" onChange={handleChange}
                 placeholder="Enter your name" required
                 className="bg-slate-300 p-2 rounded-md text-slate-700 border-t-2 shadow-md shadow-orange-500 focus:outline-none"
               />
@@ -36,7 +51,7 @@ const Register = () => {
               <input
                 type="email"
                 name="email"
-                id="email"
+                id="email" onChange={handleChange}
                 placeholder="Enter your email" required
                 className="bg-slate-300 p-2 rounded-md text-slate-700 border-t-2 shadow-md shadow-orange-500 focus:outline-none"
               />
@@ -48,8 +63,8 @@ const Register = () => {
               <div className="flex justify-center items-center w-full bg-slate-300 gap-2 border-t-2 shadow-md shadow-orange-500 rounded-md">
                 <input
                   type={showPassword === true ? "text" : "password"}
-                  id="password"
-                  name="password"
+                  id="password" autoComplete='current-password'
+                  name="password" onChange={handleChange}
                   placeholder="Enter your password" required
                   className="p-2 text-slate-700 bg-slate-300 focus:outline-none w-full"
                 />
@@ -67,7 +82,7 @@ const Register = () => {
               </div>
             </div>
             <div className="flex p-2 justify-center mt-4">
-              <button className="bg-orange-700 shadow-md shadow-slate-500 hover:bg-orange-600 p-2 w-full rounded-md text-white font-bold">
+              <button className="bg-orange-700 shadow-md shadow-slate-500 hover:bg-orange-600 p-2 w-full rounded-md text-white font-bold" onClick={handleSignup}>
                 Sign Up
               </button>
             </div>

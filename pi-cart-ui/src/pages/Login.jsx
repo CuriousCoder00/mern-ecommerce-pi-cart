@@ -2,8 +2,23 @@ import Logo from "../components/Logo";
 import { useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { Link } from "react-router-dom";
+
+const loginInitials = {
+  email: "",
+  password: "",
+};
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [loginFormData, setLoginForm] = useState(loginInitials);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    console.log("logging in", loginFormData);
+  };
+
+  const handleChange = (e) => {
+    setLoginForm({ ...loginFormData, [e.target.name]: e.target.value });
+  };
 
   return (
     <div className="flex justify-center mt-10 ">
@@ -23,7 +38,7 @@ const Login = () => {
               <input
                 type="email"
                 name="email"
-                id="email"
+                id="email" onChange={handleChange}
                 placeholder="Enter your email" required
                 className="bg-slate-300 p-2 rounded-md text-slate-800 focus:outline-none border-t-2 shadow-md shadow-orange-500"
               />
@@ -35,8 +50,8 @@ const Login = () => {
               <div className="flex justify-center items-center w-full bg-slate-300 gap-2 border-t-2 shadow-md shadow-orange-500 rounded-md">
                 <input
                   type={showPassword === true ? "text" : "password"}
-                  id="password"
-                  name="password"
+                  id="password" autoComplete="current-password"
+                  name="password" onChange={handleChange}
                   placeholder="Enter your password" required
                   className="bg-slate-300 p-2 rounded-md text-slate-800 focus:outline-none  w-full"
                 />
@@ -54,7 +69,7 @@ const Login = () => {
               </div>
             </div>
             <div className="flex p-2 justify-center mt-4">
-              <button className="bg-orange-700 shadow-md shadow-slate-500 hover:bg-orange-600 p-2 w-full rounded-md text-white font-bold">
+              <button className="bg-orange-700 shadow-md shadow-slate-500 hover:bg-orange-600 p-2 w-full rounded-md text-white font-bold" onClick={handleLogin}>
                 Login
               </button>
             </div>

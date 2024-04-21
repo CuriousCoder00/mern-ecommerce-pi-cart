@@ -1,8 +1,26 @@
 import Logo from "./Logo";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { MdOutlineShoppingCart, MdSearch } from "react-icons/md";
+import { useContext, useState } from "react";
 
 const Navbar = () => {
+
+  // const context = useContext(Context)
+  // const navigate = useNavigate()
+  const searchInput = useLocation()
+  const URLSearch = new URLSearchParams(searchInput?.search)
+  const searchQuery = URLSearch.getAll("q")
+  const [search,setSearch] = useState(searchQuery)
+
+  const handleSearch = (e) => {
+    const {value} = e.target;
+    setSearch(value)
+    if(value){
+      console.log("searching for",value)
+    } else {
+      console.log("search query is empty")
+    }
+  }
   return (
     <div className="flex w-screen justify-between px-10 items-center bg-slate-200 gap-5 shadow-md shadow-slate-600">
       <div className="p-1">
@@ -14,7 +32,7 @@ const Navbar = () => {
         <input
           type="search"
           name="search"
-          id="search"
+          id="search" onChange={handleSearch} value={search}
           placeholder="Search for product here..."
           className=" bg-slate-300 rounded-xl w-full focus:outline-none text-slate-700 font-medium p-1"
         />
